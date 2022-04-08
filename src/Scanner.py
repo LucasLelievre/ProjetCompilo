@@ -13,12 +13,7 @@ class Scanner :
         self.pos = 0
     
     def scan(self) :
-        output = {
-            "code": 'null',
-            "act": 'null',
-            "type": 'null',
-            "nom": 'null'
-        }
+        output = { "code": 'null', "act": 'null', "type": 'null', "nom": 'null' }
 
         # Rule name
         if (self.pos == 0 or self.regles[self.pos-1] == ',') and self.regles[self.pos] not in self.ops :
@@ -36,7 +31,6 @@ class Scanner :
             output["act"] = 0
             output["type"] = 'Terminal'
             output["nom"] = self.regles[self.pos:self.pos+2]
-
             if output["nom"] == '/)' :
                 output["act"] = 7
             self.pos += 2
@@ -51,7 +45,6 @@ class Scanner :
                 output["act"] = 6
             if output["nom"] == ',' :
                 output["act"] = 1
-                # self.pos = 0
             self.pos += 1
 
         # elements terminaux
@@ -73,7 +66,6 @@ class Scanner :
                     output["type"] = 'NonTerminal'
                     output["nom"] = self.regles[self.pos:i]
                     self.pos += i - self.pos
-                    # print(output["nom"])
                     break
         
         return output

@@ -2,7 +2,7 @@ import Forest
 from Imprim import imprimArbre
 import Scanner
 
-class g0 :
+class meta :
 
     def __init__(self, file) :
         self.a = {}
@@ -11,8 +11,6 @@ class g0 :
         self.lastScan = {}
 
         self.pileAction = []
-        self.dicoT = {}
-        self.dicoNT = {}
 
     def scanG0 (self) :
         self.lastScan = self.scanner.scan()
@@ -81,4 +79,4 @@ class g0 :
             self.pileAction.append(Forest.GenStar(t1))
         if act == 7 :
             t1 = self.pileAction.pop()
-            self.pileAction.append(Forest.GenUn(t1))        
+            self.pileAction.append(Forest.GenUn(t1))

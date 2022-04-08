@@ -29,7 +29,7 @@ class Atom :
         if atyp == 'NonTerminal' or val == 'IDNTER' :
             self.cod = 'IDNTER'
         else :
-            self.cod = 'ELTER' #TODO is operation needed
+            self.cod = 'ELTER'
 
 def GenConc (p1, p2) :
     return Conc(p1, p2)
@@ -114,6 +114,3 @@ def GenForest () :
                 )
             )
     }
-
-# a = GenForest()
-# print(a)

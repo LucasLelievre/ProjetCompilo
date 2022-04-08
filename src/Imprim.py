@@ -1,5 +1,4 @@
 def imprimArbre (a, buffer = "") :
-    # print(buffer, end="")
     if a.classe == 'Conc' :
         print('.')
         print(buffer, '├─ ', end='')
