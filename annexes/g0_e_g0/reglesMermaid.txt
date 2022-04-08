@@ -1,0 +1,310 @@
+graph regle1
+    a((S)) --> b((.))
+    b --> c((*))
+    b --> d((";"))
+    c --> e((.))
+    c --> f((,))
+    e --> g((.))
+    e --> h((E))
+    g --> i((N))
+    g --> j(("➔"))
+    i --> k(("IDNTER"))
+    k --> l(("S"))
+    h --> m((T))
+    m --> n((.))
+    n --> o((F))
+    n --> p((*))
+    o --> q((.))
+    q --> r(("["))
+    q --> s((E))
+    q --> t(("]"))
+    s --> u((T))
+    u --> v((.))
+    v --> w((F))
+    v --> x((*))
+    w --> y(("IDNTER"))
+    y --> z(("N"))
+    x --> aa((.))
+    x --> ab((.))
+    x --> ac((.))
+    aa --> ad((.))
+    aa --> af((F))
+    af --> ag(("ELTER"))
+    ag --> ah(("'➔'"))
+    ab --> ai((.))
+    ab --> aj((F))
+    aj --> ak((IDNTER))
+    ak --> al((E))
+    ac --> am((.))
+    ac --> an((ELTER))
+    an --> ao((','))
+    p --> ap((.))
+    ap --> aq((.))
+    ap --> ar((F))
+    ar --> as((ELTER))
+    as --> at(("';'"))
+    subgraph "."
+        d
+        at
+        ao
+        al
+        ai
+        ad
+        ah
+        j
+        l
+        r
+        t
+        f 
+        z
+        am
+        aq
+    end
+
+
+graph regle2
+    a((S)) --> b((.))
+    b --> c((*))
+    b --> d((";"))
+    c --> e((.))
+    e --> g((.))
+    e --> f((","))
+    
+    g --> h((.))
+    g --> m((E))
+    h --> i((N))
+    h --> j(("->"))
+    i --> k((IDNTER))
+    k --> l((N))
+    
+    m --> n((T))
+    n --> o((F))
+    o --> p((ELTER))
+    p --> q(('IDNTER'))
+    subgraph "."
+        l
+        q
+        j 
+        f
+        d
+    end
+
+
+graph regle3
+   a((S)) --> b((.))
+   b --> c((*))
+   b --> d((";"))
+   c --> e((.))
+   e --> g((.))
+   e --> f((","))
+   
+   g --> h((.))
+   g --> m((E))
+   h --> i((N))
+   h --> j(("->"))
+   i --> k((IDNTER))
+   k --> l((E))
+   
+   m --> n((T))
+   n --> o((.))
+   o --> p((F))
+   p --> q(("IDNTER"))
+   q --> r((T))
+   o --> s((*))
+   s --> u((.))
+   u --> v((.))
+   u --> w((F))
+   w --> wbis((.))
+   wbis --> x(("["))
+   wbis --> y((.))
+   y --> z((E))
+   y --> aa(("]"))
+   z --> ab((T))
+   ab --> ac((.))
+   ac --> ad((F))
+   ac --> ae((*))
+   ad --> af((ELTER))
+   af --> ag(('+'))
+   ae --> ah((.))
+   ah --> ai(("."))
+   ah --> aj((F))
+   aj --> ak((IDNTER))
+   ak --> al((T))
+
+    subgraph "."
+        l
+        j
+        r
+        v
+        x
+        al
+        ag
+        ai
+        aa
+        f
+        d
+    end
+
+
+graph regle4
+   a((S)) --> b((.))
+   b --> c((*))
+   b --> d((";"))
+   c --> e((.))
+   e --> g((.))
+   e --> f((","))
+   
+   g --> h((.))
+   g --> m((E))
+   h --> i((N))
+   h --> j(("->"))
+   i --> k((IDNTER))
+   k --> l((T))
+   
+   m --> n((T))
+   n --> o((.))
+   o --> p((F))
+   p --> q(("IDNTER"))
+   q --> r((F))
+   o --> s((*))
+   s --> u((.))
+   u --> v((.))
+   u --> w((F))
+   w --> wbis((.))
+   wbis --> x(("["))
+   wbis --> y((.))
+   y --> z((E))
+   y --> aa(("]"))
+   z --> ab((T))
+   ab --> ac((.))
+   ac --> ad((F))
+   ac --> ae((*))
+   ad --> af((ELTER))
+   af --> ag(('.'))
+   ae --> ah((.))
+   ah --> ai(("."))
+   ah --> aj((F))
+   aj --> ak((IDNTER))
+   ak --> al((F))
+
+    subgraph "."
+        l
+        j
+        r
+        v
+        x
+        al
+        ag
+        ai
+        aa
+        f
+        d
+    end
+
+
+graph regle5
+    a((S)) --> b((.))
+    b --> c((*))
+    b --> d((";"))
+    c --> e((.))
+    e --> f((.))
+    e --> g((,))
+    f --> h((.))
+    f --> i((E))
+    h --> j((N))
+    h --> k(("->"))
+    j --> l((IDNTER))
+    l --> m((F))
+    i --> o((.))
+    o --> p((T))
+    p --> q((F))
+    q --> r((ELTER))
+    r --> s(('IDNTER'))
+    o --> t((*))
+    t --> u((.))
+    t --> v((.))
+    t --> w((.))
+    t --> x((.))
+    u --> y((+))
+    u --> z((T))
+    z --> aa((F))
+    aa --> ab((ELTER))
+    ab --> ac(('ELTER'))
+    v --> ad((+))
+    v --> ae((T))
+    ae --> af((.))
+    af --> ag((F))
+    af --> ah((*))
+    ah --> ahbis((.))
+    ah --> ahter(("."))
+    ahbis --> ak(("."))
+    ahbis --> ai((F))
+    ahter --> al(("."))
+    ahter --> am((F))
+    ag --> an((ELTER))
+    an --> ao(("'('"))
+    ai --> ap(("IDNTER"))
+    ap --> aq(("E"))
+    am --> ar((ELTER))
+    ar --> as(("')'"))
+    w --> au((+))
+    w --> at((T))
+    at --> av((.))
+    av --> aw((F))
+    av --> ax((*))
+    aw --> ay((ELTER))
+    ay --> az(("'['"))
+    aab --> aaa((.))
+    ax --> aab((.))
+    ax --> aac((.))
+    aab --> aad((F))
+    aad --> aae((IDNTER))
+    aae --> aaf((E))
+    aac --> aag(("."))
+    aac --> aah((F))
+    aah --> aai((ELTER))
+    aai --> aaj(("']'"))
+    x --> aak(("+"))
+    x --> aal((T))
+    aal --> aam((.))
+    aam --> aan((F))
+    aam --> aao((*))
+    aan --> aap((ELTER))
+    aap --> aaq(("'(/'"))
+    aao --> aar((.))
+    aar --> aasTER((.))
+    aar --> aat((IDNTER))
+    aat --> aau((E))
+    aao --> aav((.))
+    aav --> aaw((.))
+    aav --> aax((F))
+    aax --> aay((ELTER))
+    aay --> aaz(("'/)'"))
+
+    subgraph "."
+        m
+        k
+        s
+        y
+        ac
+        ad
+        ak
+        ao
+        al
+        aq
+        as
+        au
+        az
+        aaa
+        aaf
+        aag
+        aaj
+        aak
+        aaq
+        aasTER
+        aau
+        aaw
+        aaz
+        g
+        d
+    end
