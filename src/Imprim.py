@@ -1,32 +1,32 @@
-def imprimArbre (a, buffer = "") :
-    if a.classe == 'Conc' :
+def imprimArbre (arbre, buffer = "") :
+    if arbre.classe == 'Conc' :
         print('.')
         print(buffer, '├─ ', end='')
-        imprimArbre(a.left, buffer+" │ ")
+        imprimArbre(arbre.left, buffer+" │ ")
         print(buffer, '└─ ', end='')
-        imprimArbre(a.right, buffer+"   ")
-    if a.classe == 'Union' :
+        imprimArbre(arbre.right, buffer+"   ")
+    if arbre.classe == 'Union' :
         print('+')
         print(buffer, '├─ ', end='')
-        imprimArbre(a.left, buffer+" │ ")
+        imprimArbre(arbre.left, buffer+" │ ")
         print(buffer, '└─ ', end='')
-        imprimArbre(a.right, buffer+"   ")
-    if a.classe == 'Star' :
+        imprimArbre(arbre.right, buffer+"   ")
+    if arbre.classe == 'Star' :
         print('*')
         print(buffer, '└─ ', end='')
-        imprimArbre(a.stare, buffer+"   ")
-    if a.classe == 'Un' :
+        imprimArbre(arbre.stare, buffer+"   ")
+    if arbre.classe == 'Un' :
         print('Un')
         print(buffer, '└─ ', end='')
-        imprimArbre(a.une, buffer+"   ")
-    if a.classe == 'Atom' :
-        if a.atyp == 'Terminal' :
-            print("'", a.nom, "'", sep="")
+        imprimArbre(arbre.une, buffer+"   ")
+    if arbre.classe == 'Atom' :
+        if arbre.atyp == 'Terminal' :
+            print("'", arbre.nom, "'", sep="")
         else :
-            print(a.nom)
+            print(arbre.nom)
 
-def imprimRegles (a) :
+def imprimRegles (foret) :
     print("===== Règles grammaire")
-    for i in a :
+    for i in foret :
         print(i, "\n└─ ", end='')
-        imprimArbre(a[i], '  ')
+        imprimArbre(foret[i], '  ')

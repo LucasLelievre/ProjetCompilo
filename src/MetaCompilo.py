@@ -1,19 +1,79 @@
 import Forest
-from Imprim import imprimArbre
-import Scanner
 
 class meta :
 
-    def __init__(self, file) :
-        self.a = {}
-
-        self.scanner = Scanner.Scanner(file)
-        self.lastScan = {}
-
+    def __init__(self, foret, file) :
+        self.foret = foret
         self.pileAction = []
+        self.ops = ['->', '+', '.', '*', '[', ']', '(', ')', '(/', '/)', ',', ';']
+        self.lastScan = {}
+        self.gram = ""
+        self.pos = 0
+
+        print("===== Scan fichier grammaire", file)
+        f = open(file, "r")
+        lines = f.readlines()
+        f.close()
+        for i in range(len(lines)) :
+            self.gram += lines[i].strip()
+        print(self.gram)
 
     def scanG0 (self) :
-        self.lastScan = self.scanner.scan()
+        output = { "code": 'null', "act": 'null', "type": 'null', "nom": 'null' }
+        # Rule name
+        if (self.pos == 0 or self.gram[self.pos-1] == ',') and self.gram[self.pos] not in self.ops :
+            rest = self.gram[self.pos:]
+            end = rest.find("->")
+            output["code"] = 'IDNTER'
+            output["act"] = 2
+            output["type"] = 'NonTerminal'
+            output["nom"] = rest[:end]
+            self.pos += end
+        
+        # operations de taille 2 -> (/ /)
+        elif self.gram[self.pos:self.pos+2] in self.ops :
+            output["code"] = 'OPERATION'
+            output["act"] = 0
+            output["type"] = 'Terminal'
+            output["nom"] = self.gram[self.pos:self.pos+2]
+            if output["nom"] == '/)' :
+                output["act"] = 7
+            self.pos += 2
+
+        # operations de taille 1
+        elif self.gram[self.pos] in self.ops :
+            output["code"] = 'OPERATION'
+            output["act"] = 0
+            output["type"] = 'Terminal'
+            output["nom"] = self.gram[self.pos]
+            if output["nom"] == ']' :
+                output["act"] = 6
+            if output["nom"] == ',' :
+                output["act"] = 1
+            self.pos += 1
+
+        # elements terminaux
+        elif self.gram[self.pos] == "'" :
+            rest = self.gram[self.pos+1:]
+            end = rest.find("'")
+            output["code"] = 'ELTER'
+            output["act"] = 5
+            output["type"] = 'Terminal'
+            output["nom"] = rest[:end]
+            self.pos += end + 2
+        
+        # identifiants non terminaux
+        else :
+            for i in range(self.pos, len(self.gram)) :
+                if self.gram[i] in self.ops :
+                    output["code"] = 'IDNTER'
+                    output["act"] = 5
+                    output["type"] = 'NonTerminal'
+                    output["nom"] = self.gram[self.pos:i]
+                    self.pos += i - self.pos
+                    break
+        
+        self.lastScan = output
         # print("scan  :\t", self.lastScan['nom'], self.lastScan['code'], self.lastScan['act'], self.lastScan['type'])
     
     def analyseG0 (self, p) :
@@ -45,7 +105,7 @@ class meta :
                 else :
                     return False
             else :
-                if self.analyseG0(self.a[p.nom]) :
+                if self.analyseG0(self.foret[p.nom]) :
                     if p.act != 0 :
                         self.actionG0(p.act)
                     return True
@@ -58,7 +118,7 @@ class meta :
         if act == 1 :
             t1 = self.pileAction.pop()
             t2 = self.pileAction.pop()
-            self.a[t2.nom] = t1
+            self.foret[t2.nom] = t1
         if act == 2 :
             self.pileAction.append(Forest.GenAtom(self.lastScan["nom"], act, self.lastScan["type"])) #TODO what is DICONT
         if act == 3 :
