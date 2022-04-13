@@ -1,1 +1,14 @@
-c y c y a c y a c y c y a b
+Program Somme
+var I ;
+var S ;
+var N ;
+Debut
+readln N ;
+S := 0 ;
+I := 0 ;
+while I <= N do
+S := S + I ;
+I := I + 1 ;
+endwhile ;
+writeln S ;
+Fin .

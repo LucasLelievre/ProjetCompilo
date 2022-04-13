@@ -2,6 +2,7 @@ import Forest
 import Imprim
 import MetaCompilo
 import Compilo
+import Executor
 
 def main () :
     # Créé une grammaire avec les 5 règles de la grammaire g0
@@ -33,9 +34,13 @@ def main () :
             print("NON")
         else :
             print("OUI")
-
+            
+            pcode = []
             #afficher pcode
+            print('===== Affichage du pcode :\n', compilo.pcode)
             #executer pcode
+            exe = Executor.exe()
+            exe.exec(compilo.pcode)
 
 
 main()

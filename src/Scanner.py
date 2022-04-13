@@ -27,7 +27,7 @@ class Scanner :
         
         # operations de taille 2 -> (/ /)
         elif self.regles[self.pos:self.pos+2] in self.ops :
-            output["code"] = 'OPERATION'
+            output["code"] = 'ELTER'
             output["act"] = 0
             output["type"] = 'Terminal'
             output["nom"] = self.regles[self.pos:self.pos+2]
@@ -37,7 +37,7 @@ class Scanner :
 
         # operations de taille 1
         elif self.regles[self.pos] in self.ops :
-            output["code"] = 'OPERATION'
+            output["code"] = 'ELTER'
             output["act"] = 0
             output["type"] = 'Terminal'
             output["nom"] = self.regles[self.pos]

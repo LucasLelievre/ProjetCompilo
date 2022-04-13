@@ -65,7 +65,8 @@ class meta :
         # identifiants non terminaux
         else :
             for i in range(self.pos, len(self.gram)) :
-                if self.gram[i] in self.ops :
+                # print(self.gram[i], self.gram[i:i+2])
+                if self.gram[i] in self.ops or self.gram[i:i+2] in self.ops :
                     output["code"] = 'IDNTER'
                     output["act"] = 5
                     output["type"] = 'NonTerminal'
@@ -73,8 +74,15 @@ class meta :
                     self.pos += i - self.pos
                     break
         
+        # Detection de l'action
+        if '#' in output['nom'] :
+            hash = output['nom'].find('#')
+            output['act'] = output['nom'][hash+1:]
+            output['nom'] = output['nom'][:hash]
+        else :
+            output['act'] = 0
+
         self.lastScan = output
-        # print("scan  :\t", self.lastScan['nom'], self.lastScan['code'], self.lastScan['act'], self.lastScan['type'])
     
     def analyseG0 (self, p) :
         if p.classe == 'Conc' :
@@ -99,7 +107,7 @@ class meta :
                 if p.nom == self.lastScan['nom'] or (p.nom == self.lastScan['code']) :
                     if p.act != 0 :
                         self.actionG0(p.act)
-                    if self.lastScan['nom'] != ';':
+                    if self.lastScan['nom'] != ';' or self.lastScan['code'] != 'OPERATION':
                         self.scanG0()
                     return True
                 else :
@@ -120,7 +128,7 @@ class meta :
             t2 = self.pileAction.pop()
             self.foret[t2.nom] = t1
         if act == 2 :
-            self.pileAction.append(Forest.GenAtom(self.lastScan["nom"], act, self.lastScan["type"])) #TODO what is DICONT
+            self.pileAction.append(Forest.GenAtom(self.lastScan["nom"], self.lastScan['act'], self.lastScan["type"]))
         if act == 3 :
             t1 = self.pileAction.pop()
             t2 = self.pileAction.pop()
@@ -131,9 +139,9 @@ class meta :
             self.pileAction.append(Forest.GenConc(t2, t1))
         if act == 5 :
             if self.lastScan["type"] == 'Terminal' :
-                self.pileAction.append(Forest.GenAtom(self.lastScan["nom"], act, 'Terminal'))
+                self.pileAction.append(Forest.GenAtom(self.lastScan["nom"], self.lastScan['act'], 'Terminal'))
             else :
-                self.pileAction.append(Forest.GenAtom(self.lastScan["nom"], act, 'NonTerminal'))
+                self.pileAction.append(Forest.GenAtom(self.lastScan["nom"], self.lastScan['act'], 'NonTerminal'))
         if act == 6 :
             t1 = self.pileAction.pop()
             self.pileAction.append(Forest.GenStar(t1))
