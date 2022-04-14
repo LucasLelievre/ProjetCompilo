@@ -65,7 +65,6 @@ class compilo :
             if self.analyseGPL(p.left) :
                 return self.analyseGPL(p.right)
             else :
-                # print('conc fausse\t\t', p.left.classe)
                 return False
         if p.classe == 'Union' :
             if self.analyseGPL(p.left) :

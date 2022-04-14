@@ -25,7 +25,6 @@ class meta :
             rest = self.gram[self.pos:]
             end = rest.find("->")
             output["code"] = 'IDNTER'
-            output["act"] = 2
             output["type"] = 'NonTerminal'
             output["nom"] = rest[:end]
             self.pos += end
@@ -33,23 +32,15 @@ class meta :
         # operations de taille 2 -> (/ /)
         elif self.gram[self.pos:self.pos+2] in self.ops :
             output["code"] = 'OPERATION'
-            output["act"] = 0
             output["type"] = 'Terminal'
             output["nom"] = self.gram[self.pos:self.pos+2]
-            if output["nom"] == '/)' :
-                output["act"] = 7
             self.pos += 2
 
         # operations de taille 1
         elif self.gram[self.pos] in self.ops :
             output["code"] = 'OPERATION'
-            output["act"] = 0
             output["type"] = 'Terminal'
             output["nom"] = self.gram[self.pos]
-            if output["nom"] == ']' :
-                output["act"] = 6
-            if output["nom"] == ',' :
-                output["act"] = 1
             self.pos += 1
 
         # elements terminaux
@@ -57,7 +48,6 @@ class meta :
             rest = self.gram[self.pos+1:]
             end = rest.find("'")
             output["code"] = 'ELTER'
-            output["act"] = 5
             output["type"] = 'Terminal'
             output["nom"] = rest[:end]
             self.pos += end + 2
@@ -68,7 +58,6 @@ class meta :
                 # print(self.gram[i], self.gram[i:i+2])
                 if self.gram[i] in self.ops or self.gram[i:i+2] in self.ops :
                     output["code"] = 'IDNTER'
-                    output["act"] = 5
                     output["type"] = 'NonTerminal'
                     output["nom"] = self.gram[self.pos:i]
                     self.pos += i - self.pos
